@@ -20,7 +20,8 @@
     "prepublish": "npm run build",
     "predeploy": "webpack",
     "deploy": "gh-pages -d dist",
-    "publish": "npm run deploy"
+    "publish": "npm run deploy",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",

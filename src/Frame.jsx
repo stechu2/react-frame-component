@@ -29,8 +29,7 @@ export default class Frame extends Component {
     mountTarget: undefined,
     contentDidMount: () => {},
     contentDidUpdate: () => {},
-    initialContent:
-      '<!DOCTYPE html><html><head></head><body><div class="frame-root"></div></body></html>'
+    initialContent: '<head></head><body><div class="frame-root"></div></body>'
   };
 
   constructor(props, context) {
@@ -98,9 +97,7 @@ export default class Frame extends Component {
     );
 
     if (doc.body.children.length < 1) {
-      doc.open('text/html', 'replace');
-      doc.write(this.props.initialContent);
-      doc.close();
+      doc.getElementsByTagName('html')[0].innerHTML = this.props.initialContent;
     }
 
     const mountTarget = this.getMountTarget();
@@ -124,7 +121,7 @@ export default class Frame extends Component {
     return (
       <iframe
         {...props}
-        ref={node => {
+        ref={(node) => {
           this.node = node;
         }}
       >
